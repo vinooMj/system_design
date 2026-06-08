@@ -1,0 +1,11 @@
+resilience4j.circuitbreaker:
+  instances:
+    backendService:
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 100
+      failureRateThreshold: 50 # Trip if 50% of last 100 requests fail
+      slowCallRateThreshold: 75 # Trip if 75% of calls are slower than expected
+      slowCallDurationThreshold: 2000ms
+      waitDurationInOpenState: 15000ms # Wait 15s before trying Half-Open
+      permittedNumberOfCallsInHalfOpenState: 10
+      automaticTransitionFromOpenToHalfOpenEnabled: true
